@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { State } from 'src/app/shared/enums/state.enum';
 import { Prestation } from 'src/app/shared/models/prestation.model';
 import { PrestationService } from '../../services/prestation.service';
@@ -12,10 +13,12 @@ import { PrestationService } from '../../services/prestation.service';
 export class PrestationComponent implements OnInit {
   public states = Object.values(State);
   public faTrash = faTrash;
+  public faEdit = faEdit;
 
   @Input() item: Prestation;
   constructor(
-    private ps: PrestationService
+    private ps: PrestationService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -44,4 +47,11 @@ export class PrestationComponent implements OnInit {
     // });
   }
 
+  public edit() {
+    this.router.navigate(['prestations/edit', this.item.id]);
+  }
+
+  public detail() {
+    this.ps.presta$.next(this.item);
+  }
 }

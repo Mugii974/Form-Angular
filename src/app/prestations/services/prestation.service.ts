@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { State } from 'src/app/shared/enums/state.enum';
 import { Prestation } from 'src/app/shared/models/prestation.model';
+import { ClientService } from 'src/app/clients/services/client.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,21 +16,26 @@ export class PrestationService {
   // JS reconnait l'utilisation du getters / setters automatiquement
   private _collection$: Observable<Prestation[]>;
   private itemsCollection: AngularFirestoreCollection<Prestation>;
+  // Convention de nommage Observable avec le $
+  public presta$ = new BehaviorSubject(null);
 
   constructor(
     private afs: AngularFirestore,
-    private http: HttpClient
+    private http: HttpClient,
+    private cs: ClientService
   ) {
     // this.collection = fakeCollection;
     this.itemsCollection = afs.collection<Prestation>('prestations');
     // Récupération des données depuis la bdd
     this.collection$ = this.itemsCollection.valueChanges().pipe(
-      map(data => data.map(presta => new Prestation(presta)))
-      // map((data) => {
-      //   return data.map((presta) => {
-      //     return new Prestation(presta);
-      //   });
-      // })
+      // map(data => data.map(presta => new Prestation(presta)))
+      map((data) => {
+        this.presta$.next(new Prestation(data[0]));
+        console.log(this.presta$.value);
+        return data.map((presta) => {
+          return new Prestation(presta);
+        });
+      })
     );
     // Appel HTTP (sans firebase), on récupère un Observable
     // this.collection$ = this.http.get<Prestation[]>('url-api/prestations').pipe(

@@ -2,4 +2,8 @@
   <app-list-prestations></app-list-prestations>
 </app-template-d>
 
-
+<!-- Créer deux liens avec sous navigation pour maj bas de la page -->
+<div class="container">
+  <app-nav-tab [routes]="routes"></app-nav-tab>
+  <router-outlet></router-outlet>
+</div>

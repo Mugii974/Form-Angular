@@ -1,4 +1,4 @@
-<tr>
+<tr (click)="detail()">
   <td>{{ item.typePresta }}</td>
   <td>{{ item.client }}</td>
   <td>{{ item.nbJours }}</td>
@@ -6,7 +6,7 @@
   <td>{{ item | total | currency:'EUR'}}</td>
   <td>{{ item | total:item.tauxTva | currency:'EUR'}}</td>
   <td [appState]="item.state">
-    <select (change)="changeState($event)">
+    <select (change)="changeState($event)" (click)="$event.stopPropagation()">
       <option [value]="item.state">{{ item.state }}</option>
       <!-- La directive ng-container ne sera pas présent dans le DOM et donc valide W3C-->
       <ng-container *ngFor="let state of states">
@@ -16,6 +16,10 @@
     </select>
   </td>
   <td>
-      <fa-icon [icon]="faTrash" (click)="delete()"></fa-icon>
+      <!-- stopPropagation() permettra de ne pas remonter dans le DOM et limiter l'effet de "bouillonement" -->
+      <fa-icon [icon]="faTrash" (click)="$event.stopPropagation(); delete()"></fa-icon>
+    </td>
+    <td>
+      <fa-icon [icon]="faEdit" (click)="$event.stopPropagation(); edit()"></fa-icon>
   </td>
 </tr>

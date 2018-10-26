@@ -15,9 +15,7 @@ export class ListPrestationsComponent implements OnInit, OnDestroy {
   public headers: string[];
   // private sub: Subscription;
   // Avec private, on pourra accéder à toutes les propriétés public de mon objet
-  constructor(
-    private ps: PrestationService
-    ) { }
+  constructor(private ps: PrestationService) {}
 
   ngOnInit() {
     this.collection$ = this.ps.collection$;
@@ -25,14 +23,17 @@ export class ListPrestationsComponent implements OnInit, OnDestroy {
     // this.sub = this.ps.collection.subscribe((data) => {
     //   this.collection = data;
     // });
-    this.headers = ['Type',
-    'Client',
-    'Nb-jours',
-    'Tjm HT',
-    'Total HT',
-    'Total TTC',
-    'Action',
-    'Delete'];
+    this.headers = [
+      'Type',
+      'Client',
+      'Nb-jours',
+      'Tjm HT',
+      'Total HT',
+      'Total TTC',
+      'Action',
+      'Delete',
+      'Edit'
+    ];
   }
 
   ngOnDestroy() {

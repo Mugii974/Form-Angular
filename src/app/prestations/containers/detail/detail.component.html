@@ -1,0 +1,8 @@
+<div *ngIf="presta$ | async; let presta">
+  <ul>
+    <li>{{ presta.typePresta }}</li>
+    <li>{{ presta.client }}</li>
+    <li>{{ presta.tjmHt }}</li>
+    <li>{{ presta.tauxTva }}</li>
+  </ul>
+</div>

@@ -10,6 +10,7 @@ import { TemplateAComponent } from './templates/template-a/template-a.component'
 import { TemplateBComponent } from './templates/template-b/template-b.component';
 import { TemplateCComponent } from './templates/template-c/template-c.component';
 import { TemplateDComponent } from './templates/template-d/template-d.component';
+import { NavTabComponent } from './components/nav-tab/nav-tab.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { TemplateDComponent } from './templates/template-d/template-d.component'
     TableauLightComponent, TemplateAComponent,
     TemplateBComponent,
     TemplateCComponent,
-    TemplateDComponent],
+    TemplateDComponent,
+    NavTabComponent],
   exports: [TotalPipe,
     TableauComponent,
     AjoutComponent,
@@ -30,6 +32,7 @@ import { TemplateDComponent } from './templates/template-d/template-d.component'
     TemplateBComponent,
     TemplateCComponent,
     TemplateDComponent,
-    StateDirective]
+    StateDirective,
+    NavTabComponent]
 })
 export class SharedModule { }
