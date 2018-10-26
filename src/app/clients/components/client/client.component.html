@@ -1,0 +1,20 @@
+<tr>
+  <td>{{ item.nom }}</td>
+  <td>{{ item.adresse }}</td>
+  <td>{{ item.codePostal }}</td>
+  <td>{{ item.ville }}</td>
+  <td>{{ item.tjm_ht | currency:'EUR'}}</td>
+  <td [appState]="item.state">
+    <select (change)="changeState($event)">
+      <option [value]="item.state">{{ item.state }}</option>
+      <!-- La directive ng-container ne sera pas présent dans le DOM et donc valide W3C-->
+      <ng-container *ngFor="let state of states">
+        <!-- les [] permettent de binder en propriété JS pour le typage -->
+        <option [value]="state" *ngIf="state !== item.state">{{ state }}</option>
+      </ng-container>
+    </select>
+  </td>
+  <td>
+      <fa-icon [icon]="faTrash" (click)="delete()"></fa-icon>
+  </td>
+</tr>

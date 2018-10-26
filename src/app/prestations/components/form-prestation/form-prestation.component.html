@@ -1,0 +1,49 @@
+<div class="container">
+  <!--
+    novalidate permet de ne pas garder les validations JS des navigateurs
+    ngForm permet de donner un nom à un objet HTML de type form-group, l'attribut name est obligatoire dans le form (input)
+  -->
+  <form novalidate #form="ngForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <!-- for et id doivent avoir le même nom
+        le ngModel sera utilisé pour le two ways databinding
+        L'attribut touched renvoi true quand on va quitter l'input sans l'avoir rempli directement
+      -->
+      <label for="type">Type</label>
+      <input name="type" type="text" class="form-control" id="type" required
+      minlength="3" [(ngModel)]="init.typePresta" #type="ngModel">
+      {{ init.typePresta }}
+      <div class="alert alert-danger" *ngIf="type.invalid && type.touched">Champ invalid</div>
+    </div>
+
+    <div class="form-group">
+      <label for="client">Client</label>
+      <input name="client" type="text" class="form-control" id="client" required [(ngModel)]="init.client">
+    </div>
+
+    <div class="form-group">
+      <label for="nbj">Nb Jours</label>
+      <input name="nbj" type="number" class="form-control" id="nbj" [(ngModel)]="init.nbJours">
+    </div>
+
+    <div class="form-group">
+      <label for="tjm">Tjm HT</label>
+      <input name="tjm" type="number" class="form-control" id="tjm" [(ngModel)]="init.tjmHt">
+    </div>
+
+    <div class="form-group">
+      <label for="tva">Tva</label>
+      <input name="tva" type="number" class="form-control" id="tva" [(ngModel)]="init.tauxTva">
+    </div>
+
+    <div class="form-group">
+      <label for="state">State</label>
+      <select name="state" class="form-control" [(ngModel)]="init.state">
+        <option  *ngFor="let state of states" [value]="state">{{ state }}</option>
+      </select>
+    </div>
+    <!-- Bouton inactif tant que le formulaire n'est pas valide -->
+    <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Valider</button>
+  </form>
+</div>

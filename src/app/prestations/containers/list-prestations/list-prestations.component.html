@@ -1,0 +1,10 @@
+<app-tableau [headers]="headers">
+  <!--
+    Utilisation d'une directive de structure *ngFor, commence par une *
+    Modifie la structure du DOM
+  -->
+  <app-prestation *ngFor="let presta of collection$ | async" [item]="presta" ></app-prestation>
+
+  <app-ajout title="prestations"></app-ajout>
+</app-tableau>
+

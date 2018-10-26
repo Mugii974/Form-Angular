@@ -1,0 +1,9 @@
+<app-tableau-light [headers]="headers">
+  <!--
+    Utilisation d'une directive de structure *ngFor, commence par une *
+    Modifie la structure du DOM
+  -->
+  <app-client *ngFor="let client of collectionCli$ | async" [item]="client" ></app-client>
+
+  <app-ajout title="clients"></app-ajout>
+</app-tableau-light>

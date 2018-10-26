@@ -1,0 +1,19 @@
+@import '~src/variables';
+
+.state-option {
+  background: $palette-color-three;
+}
+
+.state-annule,
+.state-inactif{
+  background: $palette-color-two;
+}
+
+.state-confirme,
+.state-actif{
+  background: $palette-color-four;
+}
+
+tbody>*:nth-child(odd)>tr{
+  background: darken($light-color, 8);
+}

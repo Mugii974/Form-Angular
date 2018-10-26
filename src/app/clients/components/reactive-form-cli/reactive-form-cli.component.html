@@ -1,0 +1,41 @@
+<div class="container">
+    <form novalidate (ngSubmit)="onSubmit()" [formGroup]="form">
+
+      <div class="form-group">
+        <label for="nom">Nom</label>
+        <input type="text" class="form-control" id="nom" formControlName="nom">
+        <div class="alert alert-danger" *ngIf="isError('nom')">Champ invalid</div>
+      </div>
+
+      <div class="form-group">
+        <label for="adresse">Adresse</label>
+        <input type="text" class="form-control" id="adresse" formControlName="adresse">
+        <div class="alert alert-danger" *ngIf="isError('adresse')">Champ invalid</div>
+      </div>
+
+      <div class="form-group">
+        <label for="cp">CP</label>
+        <input type="number" class="form-control" id="cp" formControlName="codePostal">
+        <div class="alert alert-danger" *ngIf="isError('codePostal')">Champ invalid</div>
+      </div>
+
+      <div class="form-group">
+        <label for="ville">Ville</label>
+        <input type="text" class="form-control" id="ville" formControlName="ville">
+      </div>
+
+      <div class="form-group">
+        <label for="tjm">Tjm HT</label>
+        <input type="number" class="form-control" id="tjm" formControlName="tjm_ht">
+      </div>
+
+      <div class="form-group">
+        <label for="state">State</label>
+        <select class="form-control" id="state" formControlName="state">
+          <option  *ngFor="let state of states" [value]="state">{{ state }}</option>
+        </select>
+      </div>
+      <!-- Bouton inactif tant que le formulaire n'est pas valide -->
+      <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Valider</button>
+    </form>
+  </div>
